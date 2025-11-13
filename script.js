@@ -11,9 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalClose = document.getElementById('modalClose');
   const yearSpan = document.getElementById('year');
   const cursor = document.getElementById('cursor');
-  const menuOpen = document.getElementById('menuOpen');
-  const menuClose = document.getElementById('menuClose');
-  const mobileMenu = document.getElementById('mobileMenu');
   const tablinks = Array.from(document.querySelectorAll('.tablink'));
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -94,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (push) location.hash = id;
     if (id==='skills') animateSkills();
     if (lenis) lenis.scrollTo(0, { immediate: prefersReduced }); else window.scrollTo({top:0, behavior: prefersReduced ? 'auto':'smooth'});
-    closeMenu();
   }
   navBtns.forEach(btn => btn.addEventListener('click', ()=>showSection(btn.dataset.target)));
   ctAs.forEach(el => el.addEventListener('click', e => {const t=el.dataset.target;if(!t)return;e.preventDefault();showSection(t)}));
@@ -126,15 +122,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (document.getElementById('skills').classList.contains('show')) animateSkills();
 
-  // Mobile slide menu (mobile only via CSS .only-mobile)
-  function openMenu(){ mobileMenu.classList.add('show'); mobileMenu.setAttribute('aria-hidden','false'); }
-  function closeMenu(){ mobileMenu.classList.remove('show'); mobileMenu.setAttribute('aria-hidden','true'); }
-  menuOpen?.addEventListener('click', openMenu);
-  menuClose?.addEventListener('click', closeMenu);
-  mobileMenu?.addEventListener('click', e=>{ if(e.target===mobileMenu) closeMenu(); });
-  mobileMenu?.querySelectorAll('.menu-link').forEach(link=> link.addEventListener('click', ()=> closeMenu()));
+  // Modal
+  document.querySelector('.projects-grid')?.addEventListener('click', (e)=>{
+    const opener = e.target.closest('[data-open-modal]'); if(!opener) return;
+    const card = opener.closest('.project-card'); if(!card) return;
+    modalTitle.textContent = card.querySelector('h3')?.innerText || 'Project';
+    modalDesc.textContent = card.querySelector('p')?.innerText || '';
+    modalLive.href = card.querySelector('.project-links a.external')?.href || '#';
+    openModal();
+  });
+  function openModal(){ modal.classList.add('show'); modal.setAttribute('aria-hidden','false'); modal.querySelector('#modalClose')?.focus(); document.body.style.overflow='hidden'; }
+  function closeModal(){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  modalClose && modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
 
-  // About counters (animated numbers)
+  // About counters
   const counters = document.querySelectorAll('.stat[data-count]');
   const counterOnce = new Set();
   function animateCounter(el){
@@ -142,17 +145,10 @@ document.addEventListener('DOMContentLoaded', () => {
     counterOnce.add(el);
     const target = parseInt(el.dataset.count,10)||0;
     const numEl = el.querySelector('.num'); if (!numEl) return;
-    let v = 0;
-    const step = Math.max(1, Math.round(target / 40));
-    const timer = setInterval(()=> {
-      v += step;
-      if (v >= target){ v = target; clearInterval(timer); }
-      numEl.textContent = v;
-    }, 24);
+    let v = 0; const step = Math.max(1, Math.round(target / 40));
+    const timer = setInterval(()=> { v += step; if (v >= target){ v = target; clearInterval(timer); } numEl.textContent = v; }, 24);
   }
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if (e.isIntersecting) animateCounter(e.target); });
-  }, { threshold: 0.5 });
+  const observer = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if (e.isIntersecting) animateCounter(e.target); }); }, { threshold: 0.5 });
   counters.forEach(c=> observer.observe(c));
 
   // Spotlight hover (About)

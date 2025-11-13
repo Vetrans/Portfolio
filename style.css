@@ -75,7 +75,7 @@ body {
   padding: 16px
 }
 
-/* Header */
+/* Desktop header (hidden on phones) */
 .header {
   position: sticky;
   top: 0;
@@ -133,93 +133,23 @@ body {
   background: linear-gradient(90deg, rgba(30, 167, 255, .25), rgba(255, 86, 200, .18))
 }
 
-.controls {
-  display: flex;
-  gap: 8px;
-  align-items: center
+.nav-underline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent)
 }
 
-.control-btn {
-  background: transparent;
-  border-radius: 12px;
-  padding: 10px;
-  color: var(--cyan);
-  border: 1px solid rgba(255, 255, 255, .18);
-  cursor: pointer;
-  transition: transform var(--tran)
-}
-
-.control-btn:hover {
-  transform: translateY(-2px)
-}
-
-.only-mobile {
-  display: none
-}
-
-/* Mobile slide menu */
-.mobile-menu {
-  position: fixed;
-  inset: 0 0 0 auto;
-  width: min(84vw, 360px);
-  background: rgba(10, 18, 64, .96);
-  backdrop-filter: blur(10px);
-  border-left: 1px solid rgba(255, 255, 255, .14);
-  transform: translateX(100%);
-  transition: transform .3s ease;
-  z-index: 1400;
-  display: flex;
-  flex-direction: column
-}
-
-.mobile-menu.show {
-  transform: translateX(0)
-}
-
-.menu-close {
-  align-self: flex-end;
-  margin: 12px;
-  border: 0;
-  background: transparent;
-  color: var(--muted);
-  font-size: 1.6rem;
-  cursor: pointer
-}
-
-.menu-items {
-  display: flex;
-  flex-direction: column;
-  padding: 12px
-}
-
-.menu-link {
-  background: transparent;
-  border: 0;
-  text-align: left;
-  color: #fff;
-  font-weight: 800;
-  padding: 14px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background .25s
-}
-
-.menu-link:hover {
-  background: linear-gradient(90deg, rgba(30, 167, 255, .18), rgba(255, 86, 200, .12))
-}
-
-/* Sticky bottom tab bar (mobile only) */
+/* Bottom tab bar (phones only) */
 .tabbar {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-  display: none;
   z-index: 1300;
   backdrop-filter: blur(10px);
   background: rgba(10, 18, 64, .85);
   border-top: 1px solid rgba(255, 255, 255, .14);
-  padding: 6px
+  padding: 6px;
+  display: none
 }
 
 .tablink {
@@ -624,7 +554,7 @@ body {
   font-weight: 800
 }
 
-/* Projects (unchanged core visuals) */
+/* Projects */
 .container {
   max-width: 1160px;
   margin: 0 auto;
@@ -828,17 +758,22 @@ body {
   display: none
 }
 
-/* Responsive: show dashboard only on phones */
-@media (max-width:760px) {
-  .only-mobile {
-    display: inline-flex
-  }
+/* Visibility control */
+.desktop-only {
+  display: block
+}
 
-  .nav {
+.mobile-only {
+  display: none
+}
+
+/* Phone layout (mutually exclusive UI) */
+@media (max-width:760px) {
+  .desktop-only {
     display: none
   }
 
-  .tabbar {
+  .mobile-only {
     display: flex
   }
 
@@ -868,6 +803,10 @@ body {
   }
 
   #backTop {
+    display: flex
+  }
+
+  .tabbar {
     display: flex
   }
 }
