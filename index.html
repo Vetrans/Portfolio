@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Rishi — Developer Portfolio</title>
 
-  <!-- Prevent theme flash -->
   <script>
     (function () {
       try {
@@ -17,7 +16,9 @@
   </script>
 
   <!-- Fonts & icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@500;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer">
 
@@ -26,23 +27,30 @@
   <link rel="icon" href="/favicon.png" />
 
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Lenis and GSAP stack -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
   <script defer src="script.js"></script>
 </head>
 
 <body>
-  <!-- Decorative particles -->
+  <!-- Background layers -->
+  <div id="bg-noise" aria-hidden="true"></div>
   <div id="particles" aria-hidden="true"></div>
-
-  <!-- Inertia cursor -->
   <div id="cursor" aria-hidden="true"></div>
 
   <div class="app">
     <!-- Header -->
-    <header class="header" role="banner">
+    <header class="header">
       <div class="wrap header-inner">
-        <a class="brand" data-target="home" href="#home">Rishi<span class="dot">.</span></a>
+        <a class="brand" href="#home" data-target="home" aria-label="Go to Home">
+          <span class="brand-word">Rishi</span><span class="dot">.</span>
+        </a>
 
-        <nav class="nav" role="navigation" aria-label="Primary" id="primaryNav">
+        <nav class="nav" aria-label="Primary">
           <button class="nav-btn active" data-target="home" aria-controls="home" aria-current="page">Home</button>
           <button class="nav-btn" data-target="about" aria-controls="about">About</button>
           <button class="nav-btn" data-target="skills" aria-controls="skills">Skills</button>
@@ -54,25 +62,32 @@
           <button id="themeToggle" class="control-btn" aria-pressed="false" aria-label="Toggle theme">
             <i class="fas fa-moon"></i>
           </button>
-          <button id="menuOpen" class="control-btn mobile" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+          <button id="menuOpen" class="control-btn mobile" aria-label="Open menu">
+            <i class="fas fa-bars"></i>
+          </button>
         </div>
       </div>
+      <div class="nav-underline" aria-hidden="true"></div>
     </header>
 
     <!-- Sections -->
-    <main class="sections" id="sections" role="main">
-      <!-- HOME -->
+    <main id="sections" role="main">
+      <!-- Home -->
       <section id="home" class="section show" aria-labelledby="homeTitle" tabindex="-1">
         <div class="wrap hero">
           <div class="hero-left">
-            <h1 id="homeTitle">👋 Hi, I’m <span class="accent">Rishi</span></h1>
-            <p class="typed" aria-live="polite" id="typed"></p>
-            <p class="lead">Aspiring Computer Engineer and Web Developer. I build modern, accessible, and interactive
-              web experiences using HTML, CSS, JavaScript and Node.js.</p>
+            <h1 id="homeTitle" class="display">Hi, I’m <span class="accent">Rishi</span></h1>
+            <p class="typed" id="typed" aria-live="polite"></p>
+            <p class="lead">Aspiring Computer Engineer and Web Developer crafting modern, accessible interfaces with
+              HTML, CSS, JavaScript, and Node.js.</p>
 
             <div class="cta-row">
-              <button class="btn primary" data-target="projects">Explore Projects</button>
-              <button class="btn ghost" data-target="contact">Contact Me</button>
+              <button class="btn primary magnet" data-target="projects">
+                <span>Explore Projects</span><i class="fa-solid fa-arrow-right"></i>
+              </button>
+              <button class="btn ghost magnet" data-target="contact">
+                <span>Contact Me</span>
+              </button>
             </div>
 
             <div class="socials" aria-label="social links">
@@ -87,33 +102,32 @@
             </div>
           </div>
 
-          <div class="hero-right" aria-hidden="false">
-            <img src="/media/portrait.png" alt="Portrait of Rishi" class="avatar" id="avatar" width="320" height="320"
-              decoding="async">
-            <div class="avatar-glow" aria-hidden="true"></div>
+          <div class="hero-right">
+            <div class="portrait-wrap tilt">
+              <img src="/media/portrait.png" alt="Portrait of Rishi" class="avatar" width="360" height="360"
+                decoding="async">
+              <div class="avatar-glow"></div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ABOUT -->
+      <!-- About -->
       <section id="about" class="section" aria-labelledby="aboutTitle" tabindex="-1">
-        <div class="wrap card">
+        <div class="wrap card card-glass">
           <h2 id="aboutTitle">About Me</h2>
           <div class="about-grid">
             <div class="about-text">
-              <p>I'm a <strong>12th grade science student</strong> on a path to Computer Science Engineering. I combine
-                logical problem solving with creative UI design to build products that are fast, accessible and
-                delightful.</p>
-              <p>I enjoy animations, full-stack prototypes with Node.js, solving algorithmic problems, and designing
-                micro-interactions.</p>
-
+              <p>I'm a <strong>12th grade science student</strong> on a path to Computer Science Engineering. I blend
+                problem-solving with motion design to build fast, delightful experiences.</p>
+              <p>Love working on animations, full‑stack prototypes with Node.js, algorithms, and micro‑interactions that
+                make UIs feel alive.</p>
               <ul class="about-list">
                 <li><strong>Currently learning:</strong> React, TypeScript</li>
                 <li><strong>Interests:</strong> Web Graphics, UI/UX, Algorithms</li>
                 <li><strong>Location:</strong> Mumbai, India</li>
               </ul>
             </div>
-
             <div class="about-cards">
               <div class="mini-card">
                 <h3>Education</h3>
@@ -132,11 +146,10 @@
         </div>
       </section>
 
-      <!-- SKILLS -->
+      <!-- Skills -->
       <section id="skills" class="section" aria-labelledby="skillsTitle" tabindex="-1">
-        <div class="wrap card">
+        <div class="wrap card card-glass">
           <h2 id="skillsTitle">Skills & Tools</h2>
-
           <div class="skills-grid">
             <div class="bars">
               <h3>Core</h3>
@@ -189,7 +202,6 @@
                 </div>
               </div>
             </div>
-
             <div class="radials">
               <h3>Other / Tools</h3>
               <div class="radial-grid">
@@ -200,7 +212,6 @@
                   </svg>
                   <div class="radial-label"><strong>Git</strong><span>75%</span></div>
                 </div>
-
                 <div class="radial" data-pct="70">
                   <svg viewBox="0 0 36 36" class="circular">
                     <path class="bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831"></path>
@@ -208,7 +219,6 @@
                   </svg>
                   <div class="radial-label"><strong>Algorithms</strong><span>70%</span></div>
                 </div>
-
                 <div class="radial" data-pct="65">
                   <svg viewBox="0 0 36 36" class="circular">
                     <path class="bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831"></path>
@@ -216,7 +226,6 @@
                   </svg>
                   <div class="radial-label"><strong>Figma</strong><span>65%</span></div>
                 </div>
-
                 <div class="radial" data-pct="60">
                   <svg viewBox="0 0 36 36" class="circular">
                     <path class="bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831"></path>
@@ -230,23 +239,22 @@
         </div>
       </section>
 
-      <!-- PROJECTS -->
-      <section id="projects" class="page-section section" aria-labelledby="projectsTitle" tabindex="-1">
+      <!-- Projects -->
+      <section id="projects" class="section" aria-labelledby="projectsTitle" tabindex="-1">
         <div class="container">
-          <h2 class="section-title" id="projectsTitle">🚀 Projects</h2>
-          <p class="section-subtitle">Some cool things I've built recently 👇</p>
+          <h2 id="projectsTitle" class="section-title">🚀 Projects</h2>
+          <p class="section-subtitle">Recent builds with clean UI and smooth interactions</p>
 
           <div class="projects-grid" id="projectsGrid">
-            <!-- Project 1 -->
-            <div class="project-card" data-title="Modern Portfolio">
+            <article class="project-card" data-title="Modern Portfolio">
               <div class="project-img">
-                <img src="/media/proj1.png" alt="Screenshot of modern animated portfolio" width="640" height="400"
-                  loading="lazy" decoding="async">
+                <img src="/media/proj1.png" alt="Modern animated portfolio" width="640" height="400" loading="lazy"
+                  decoding="async">
                 <button class="overlay" type="button" data-open-modal><span>View Project</span></button>
               </div>
               <div class="project-content">
                 <h3>Modern Portfolio</h3>
-                <p>Animated personal portfolio with theme switcher & smooth transitions.</p>
+                <p>Animated portfolio with theme switcher, magnetic buttons, and buttery transitions.</p>
                 <div class="tech-badges"><span>HTML</span><span>CSS</span><span>JS</span></div>
                 <div class="project-links">
                   <a href="#" target="_blank" class="icon github" aria-label="GitHub repo"><i
@@ -255,18 +263,17 @@
                       class="fa-solid fa-up-right-from-square"></i></a>
                 </div>
               </div>
-            </div>
+            </article>
 
-            <!-- Project 2 -->
-            <div class="project-card" data-title="ChatApp UI">
+            <article class="project-card" data-title="ChatApp UI">
               <div class="project-img">
-                <img src="assets/proj2.jpg" alt="Chat application interface" width="640" height="400" loading="lazy"
+                <img src="assets/proj2.jpg" alt="Realtime chat UI" width="640" height="400" loading="lazy"
                   decoding="async">
                 <button class="overlay" type="button" data-open-modal><span>View Project</span></button>
               </div>
               <div class="project-content">
                 <h3>ChatApp UI</h3>
-                <p>Realtime chat interface like WhatsApp with typing bubbles and socket communication.</p>
+                <p>Realtime interface with typing bubbles and smooth socket updates.</p>
                 <div class="tech-badges"><span>React</span><span>Node</span><span>Socket.io</span></div>
                 <div class="project-links">
                   <a href="#" target="_blank" class="icon github" aria-label="GitHub repo"><i
@@ -275,10 +282,9 @@
                       class="fa-solid fa-up-right-from-square"></i></a>
                 </div>
               </div>
-            </div>
+            </article>
 
-            <!-- Project 3 -->
-            <div class="project-card" data-title="E‑Commerce UI">
+            <article class="project-card" data-title="E‑Commerce UI">
               <div class="project-img">
                 <img src="assets/proj3.jpg" alt="E‑commerce glass UI" width="640" height="400" loading="lazy"
                   decoding="async">
@@ -286,7 +292,7 @@
               </div>
               <div class="project-content">
                 <h3>E‑Commerce UI</h3>
-                <p>Glass-styled shop with premium UI elements & GSAP-like smoothness via native APIs.</p>
+                <p>Glass look shop with premium micro‑interactions and native smoothness.</p>
                 <div class="tech-badges"><span>HTML</span><span>Tailwind</span><span>GSAP</span></div>
                 <div class="project-links">
                   <a href="#" target="_blank" class="icon github" aria-label="GitHub repo"><i
@@ -295,15 +301,14 @@
                       class="fa-solid fa-up-right-from-square"></i></a>
                 </div>
               </div>
-            </div>
-
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- CONTACT -->
+      <!-- Contact -->
       <section id="contact" class="section" aria-labelledby="contactTitle" tabindex="-1">
-        <div class="wrap card contact-card">
+        <div class="wrap card card-glass contact-card">
           <h2 id="contactTitle">Contact</h2>
           <div class="contact-grid">
             <form id="contactForm" class="contact-form" novalidate>
@@ -314,12 +319,12 @@
               <label><span class="label">Message</span><textarea name="message" rows="5"
                   placeholder="Write your message" required></textarea></label>
               <div class="form-row">
-                <button class="btn primary" type="submit">Send Message</button>
-                <button class="btn ghost" type="reset">Reset</button>
+                <button class="btn primary magnet" type="submit">Send Message</button>
+                <button class="btn ghost magnet" type="reset">Reset</button>
               </div>
             </form>
 
-            <div class="contact-socials" aria-hidden="false">
+            <div class="contact-socials">
               <h3>Or find me on</h3>
               <div class="social-grid">
                 <a class="soc-icon" href="https://github.com/Vetrans" target="_blank" rel="noopener"
@@ -342,7 +347,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer" role="contentinfo">
+    <footer class="footer">
       <div class="wrap footer-row">
         <p>© <span id="year">2025</span> Rishi — Built with ❤️</p>
         <button id="backTop" class="control-btn" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
@@ -350,7 +355,7 @@
     </footer>
   </div>
 
-  <!-- Project modal -->
+  <!-- Modal -->
   <div id="modal" class="modal" role="dialog" aria-hidden="true" aria-labelledby="modalTitle">
     <div class="modal-card" role="document" aria-modal="true">
       <button id="modalClose" class="modal-close" aria-label="Close modal">×</button>
