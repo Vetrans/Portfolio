@@ -1,381 +1,625 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rishi | Developer Portfolio</title>
-
-  <!-- Fonts & icons -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Plus+Jakarta+Sans:wght@600;800&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link rel="icon" href="/favicon.png" />
-
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Lenis + GSAP -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siteforge | Web Development & Digital Solutions</title>
+  <meta name="description" content="Siteforge - Crafting premium web experiences with cutting-edge technology. Specializing in modern web applications, UI/UX design, and digital solutions.">
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  
+  <!-- Lenis Smooth Scroll -->
   <script defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+  
+  <!-- GSAP -->
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
+  
+  <link rel="stylesheet" href="style.css">
   <script defer src="script.js"></script>
 </head>
-
 <body>
-  <!-- Background layers -->
-  <div id="bg-noise" aria-hidden="true"></div>
-  <div id="particles" aria-hidden="true"></div>
+  <!-- Cursor -->
   <div id="cursor" aria-hidden="true"></div>
+  
+  <!-- Noise Overlay -->
+  <div id="noise" aria-hidden="true"></div>
 
-  <div class="app">
-    <!-- Header (desktop/laptop only) -->
-    <header class="header desktop-only">
-      <div class="wrap header-inner">
-        <a class="brand" href="#home" data-target="home" aria-label="Go to Home">
-          <span class="brand-word">Rishi</span><span class="dot">.</span>
-        </a>
-
-        <nav class="nav" aria-label="Primary">
-          <button class="nav-btn active" data-target="home" aria-controls="home" aria-current="page">Home</button>
-          <button class="nav-btn" data-target="about" aria-controls="about">About</button>
-          <button class="nav-btn" data-target="skills" aria-controls="skills">Skills</button>
-          <button class="nav-btn" data-target="projects" aria-controls="projects">Projects</button>
-          <button class="nav-btn" data-target="contact" aria-controls="contact">Contact</button>
-        </nav>
-      </div>
-      <div class="nav-underline" aria-hidden="true"></div>
-    </header>
-
-    <!-- Sticky bottom tab bar (phones only) -->
-    <nav class="tabbar mobile-only" aria-label="Section tabs">
-      <button class="tablink active" data-target="home"><i class="fa-solid fa-house"></i><span>Home</span></button>
-      <button class="tablink" data-target="about"><i class="fa-solid fa-user"></i><span>About</span></button>
-      <button class="tablink" data-target="skills"><i class="fa-solid fa-bolt"></i><span>Skills</span></button>
-      <button class="tablink" data-target="projects"><i class="fa-solid fa-grid-2"></i><span>Projects</span></button>
-      <button class="tablink" data-target="contact"><i class="fa-solid fa-envelope"></i><span>Contact</span></button>
-    </nav>
-
-    <!-- Main -->
-    <main id="sections" role="main">
-      <!-- Home -->
-      <section id="home" class="section show" aria-labelledby="homeTitle" tabindex="-1">
-        <div class="wrap hero">
-          <div class="hero-left">
-            <h1 id="homeTitle" class="display">Hi, I’m <span class="accent">Rishi</span></h1>
-            <p class="typed big-blue" id="typed" aria-live="polite"></p>
-            <p class="lead">Aspiring Computer Engineer and Web Developer crafting accessible, modern web experiences
-              using HTML, CSS, JavaScript and Node.js.</p>
-
-            <div class="cta-row">
-              <button class="btn primary magnet" data-target="projects">
-                <span>Explore Projects</span><i class="fa-solid fa-arrow-right"></i>
-              </button>
-              <button class="btn ghost magnet" data-target="contact">
-                <span>Contact Me</span>
-              </button>
-            </div>
-
-            <div class="socials" aria-label="social links">
-              <a class="icon" href="https://github.com/Vetrans" target="_blank" rel="noopener" aria-label="GitHub"><i
-                  class="fab fa-github"></i></a>
-              <a class="icon" href="https://linkedin.com/hrishabh3002" target="_blank" rel="noopener"
-                aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-              <a class="icon" href="https://x.com/HrishabhDu26536" target="_blank" rel="noopener"
-                aria-label="X / Twitter"><i class="fab fa-x-twitter"></i></a>
-              <a class="icon" href="https://www.instagram.com/siteforge_/" target="_blank" rel="noopener"
-                aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
-          </div>
-
-          <div class="hero-right">
-            <div class="portrait-wrap tilt">
-              <img src="portrait.png" alt="Portrait of Rishi" class="avatar" width="380" height="380"
-                decoding="async">
-              <div class="avatar-glow"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- About -->
-      <section id="about" class="section" aria-labelledby="aboutTitle" tabindex="-1">
-        <div class="wrap card card-glass about-card spotlight">
-          <div class="about-head">
-            <h2 id="aboutTitle">About Me</h2>
-            <p class="sub">Crafting fast, delightful interfaces with motion and detail.</p>
-          </div>
-
-          <div class="about-two">
-            <div class="about-bio">
-              <p>I’m a <strong>Grade 12 science student</strong> headed toward Computer Science Engineering. Passionate
-                about front‑end, web graphics, and highly interactive UIs.</p>
-              <p>I prototype quickly, write clean, readable code, and measure performance to keep experiences smooth on
-                all devices.</p>
-
-              <div class="stats">
-                <div class="stat tilt-mini" data-count="20"><span class="num">0</span><span class="label">UI
-                    components</span></div>
-                <div class="stat tilt-mini" data-count="12"><span class="num">0</span><span class="label">Mini
-                    projects</span></div>
-                <div class="stat tilt-mini" data-count="4"><span class="num">0</span><span class="label">Core
-                    stacks</span></div>
-              </div>
-
-              <ul class="chips">
-                <li>React</li>
-                <li>TypeScript</li>
-                <li>Node.js</li>
-                <li>GSAP</li>
-                <li>UI/UX</li>
-              </ul>
-            </div>
-
-            <div class="about-timeline">
-              <div class="row">
-                <div class="dot"></div>
-                <div class="row-body">
-                  <h3>Portfolio v3</h3>
-                  <p>Lenis smooth scroll, GSAP routes, brighter branding, and polished motion system.</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="dot"></div>
-                <div class="row-body">
-                  <h3>Chat UI</h3>
-                  <p>Realtime sockets with subtle micro‑interactions for message states.</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="dot"></div>
-                <div class="row-body">
-                  <h3>Algorithm practice</h3>
-                  <p>Daily problems to deepen patterns and complexity intuition.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Skills -->
-      <section id="skills" class="section" aria-labelledby="skillsTitle" tabindex="-1">
-        <div class="wrap card card-glass">
-          <h2 id="skillsTitle">Skills & Tools</h2>
-          <div class="skills-grid">
-            <div class="bars">
-              <h3>Core</h3>
-              <div class="skill" data-pct="98">
-                <div class="skill-meta"><span>HTML</span><span class="val">98%</span></div>
-                <div class="bar">
-                  <div class="bar-fill"></div>
-                </div>
-              </div>
-              <div class="skill" data-pct="95">
-                <div class="skill-meta"><span>CSS</span><span class="val">95%</span></div>
-                <div class="bar">
-                  <div class="bar-fill"></div>
-                </div>
-              </div>
-              <div class="skill" data-pct="90">
-                <div class="skill-meta"><span>JavaScript</span><span class="val">90%</span></div>
-                <div class="bar">
-                  <div class="bar-fill"></div>
-                </div>
-              </div>
-              <div class="skill" data-pct="85">
-                <div class="skill-meta"><span>Node.js</span><span class="val">85%</span></div>
-                <div class="bar">
-                  <div class="bar-fill"></div>
-                </div>
-              </div>
-              <div class="skill" data-pct="82">
-                <div class="skill-meta"><span>React</span><span class="val">82%</span></div>
-                <div class="bar">
-                  <div class="bar-fill"></div>
-                </div>
-              </div>
-              <div class="skill" data-pct="80">
-                <div class="skill-meta"><span>SQL</span><span class="val">80%</span></div>
-                <div class="bar">
-                  <div class="bar-fill"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="radials">
-              <h3>Other / Tools</h3>
-              <div class="radial-grid">
-                <div class="radial" data-pct="75">
-                  <svg viewBox="0 0 36 36" class="circular">
-                    <path class="bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831"></path>
-                    <path class="progress" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831"></path>
-                  </svg>
-                  <div class="radial-label"><strong>Git</strong><span>75%</span></div>
-                </div>
-                <div class="radial" data-pct="70">
-                  <svg viewBox="0 0 36 36" class="circular">
-                    <path class="bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831"></path>
-                    <path class="progress" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831"></path>
-                  </svg>
-                  <div class="radial-label"><strong>Algorithms</strong><span>70%</span></div>
-                </div>
-                <div class="radial" data-pct="65">
-                  <svg viewBox="0 0 36 36" class="circular">
-                    <path class="bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831"></path>
-                    <path class="progress" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831"></path>
-                  </svg>
-                  <div class="radial-label"><strong>Figma</strong><span>65%</span></div>
-                </div>
-                <div class="radial" data-pct="60">
-                  <svg viewBox="0 0 36 36" class="circular">
-                    <path class="bg" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831"></path>
-                    <path class="progress" d="M18 2.0845a15.9155 15.9155 0 1 0 0 31.831"></path>
-                  </svg>
-                  <div class="radial-label"><strong>UI/UX</strong><span>60%</span></div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- Projects -->
-      <section id="projects" class="section" aria-labelledby="projectsTitle" tabindex="-1">
-        <div class="container">
-          <h2 id="projectsTitle" class="section-title">🚀 Projects</h2>
-          <p class="section-subtitle">Recent builds with clean UI and smooth interactions</p>
-
-          <div class="projects-grid" id="projectsGrid">
-            <article class="project-card" data-title="Modern Portfolio">
-              <div class="project-img">
-                <img src="proj1.png" alt="Modern animated portfolio" width="640" height="400" loading="lazy"
-                  decoding="async">
-                <button class="overlay" type="button" data-open-modal><span>View Project</span></button>
-              </div>
-              <div class="project-content">
-                <h3>Modern Portfolio</h3>
-                <p>Animated portfolio with magnetic buttons, Lenis scrolling, and GSAP transitions.</p>
-                <div class="tech-badges"><span>HTML</span><span>CSS</span><span>JS</span></div>
-                <div class="project-links">
-                  <a href=" https://github.com/Vetrans/Portfolio " target="_blank" class="icon github" aria-label="GitHub repo"><i
-                      class="fa-brands fa-github"></i></a>
-                  <a href="https://vetrans.github.io/Portfolio" target="_blank" class="icon external" aria-label="Live demo"><i
-                      class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" data-title="ChatApp UI">
-              <div class="project-img">
-                <img src="proj2.png" alt="Realtime chat UI" width="640" height="400" loading="lazy"
-                  decoding="async">
-                <button class="overlay" type="button" data-open-modal><span>View Project</span></button>
-              </div>
-              <div class="project-content">
-                <h3>ChatApp UI</h3>
-                <p>Realtime interface with typing bubbles and polished interactions.</p>
-                <div class="tech-badges"><span>React</span><span>Node</span><span>Socket.io</span></div>
-                <div class="project-links">
-                  <a href=" https://github.com/Vetrans/ChatApp-UI " target="_blank" class="icon github" aria-label="GitHub repo"><i
-                      class="fa-brands fa-github"></i></a>
-                  <a href=" https://vetrans.github.io/ChatApp-UI/ " target="_blank" class="icon external" aria-label="Live demo"><i
-                      class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-              </div>
-            </article>
-
-            <article class="project-card" data-title="E‑Commerce UI">
-              <div class="project-img">
-                <img src="proj3.png" alt="E‑commerce glass UI" width="640" height="400" loading="lazy"
-                  decoding="async">
-                <button class="overlay" type="button" data-open-modal><span>View Project</span></button>
-              </div>
-              <div class="project-content">
-                <h3>E‑Commerce UI</h3>
-                <p>Glass look shop with premium micro‑interactions and native smoothness.</p>
-                <div class="tech-badges"><span>HTML</span><span>Tailwind</span><span>GSAP</span></div>
-                <div class="project-links">
-                  <a href="https://github.com/Vetrans/E-Commerce-UI" target="_blank" class="icon github" aria-label="GitHub repo"><i
-                      class="fa-brands fa-github"></i></a>
-                  <a href="https://vetrans.github.io/E-Commerce-UI/" target="_blank" class="icon external" aria-label="Live demo"><i
-                      class="fa-solid fa-up-right-from-square"></i></a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact -->
-      <section id="contact" class="section" aria-labelledby="contactTitle" tabindex="-1">
-        <div class="wrap card card-glass contact-card">
-          <h2 id="contactTitle">Contact</h2>
-          <div class="contact-grid">
-            <form id="contactForm" class="contact-form" novalidate>
-              <label><span class="label">Name</span><input name="name" type="text" placeholder="Your name"
-                  required></label>
-              <label><span class="label">Email</span><input name="email" type="email" placeholder="you@example.com"
-                  required></label>
-              <label><span class="label">Message</span><textarea name="message" rows="5"
-                  placeholder="Write your message" required></textarea></label>
-              <div class="form-row">
-                <button class="btn primary magnet" type="submit">Send Message</button>
-                <button class="btn ghost magnet" type="reset">Reset</button>
-              </div>
-            </form>
-
-            <div class="contact-socials">
-              <h3>Or find me on</h3>
-              <div class="social-grid">
-                <a class="soc-icon" href="https://github.com/Vetrans" target="_blank" rel="noopener"
-                  aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a class="soc-icon" href="https://linkedin.com/hrishabh3002" target="_blank" rel="noopener"
-                  aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a class="soc-icon" href="https://x.com/HrishabhDu26536" target="_blank" rel="noopener"
-                  aria-label="X / Twitter"><i class="fab fa-x-twitter"></i></a>
-                <a class="soc-icon" href="https://www.instagram.com/siteforge_/" target="_blank" rel="noopener"
-                  aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a class="soc-icon" href="mailto:codehrishabh@gmail.com" aria-label="Email"><i
-                    class="fas fa-envelope"></i></a>
-                <a class="soc-icon" href="tel:+918149889127" aria-label="Phone"><i class="fas fa-phone"></i></a>
-              </div>
-              <p class="muted small">Click any icon to open the profile.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="wrap footer-row">
-        <p>© <span id="year">2025</span> Rishi — Built with ❤️</p>
-        <button id="backTop" class="control-btn" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
-      </div>
-    </footer>
-  </div>
-
-  <!-- Modal -->
-  <div id="modal" class="modal" role="dialog" aria-hidden="true" aria-labelledby="modalTitle">
-    <div class="modal-card" role="document" aria-modal="true">
-      <button id="modalClose" class="modal-close" aria-label="Close modal">×</button>
-      <h3 id="modalTitle"></h3>
-      <p id="modalDesc"></p>
-      <div class="modal-actions">
-        <a id="modalLive" class="btn ghost small" href="#" target="_blank" rel="noopener">Open</a>
+  <!-- Navigation -->
+  <nav class="nav" role="navigation">
+    <div class="nav-container">
+      <a href="#home" class="logo" aria-label="Siteforge Home">
+        <span class="logo-text">Siteforge</span>
+        <span class="logo-dot">.</span>
+      </a>
+      
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <div class="nav-menu">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#testimonials" class="nav-link">Testimonials</a>
+        <a href="#contact" class="nav-link">Contact</a>
       </div>
     </div>
-  </div>
+  </nav>
+<main id="page">
+  <!-- Hero Section -->
+  <section id="home" class="hero active">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-icon">✨</span>
+          <span>Award-Winning Web Solutions</span>
+        </div>
+        
+        <h1 class="hero-title">
+          Crafting Digital
+          <span class="gradient-text">Experiences</span>
+          That Inspire
+        </h1>
+        
+        <p class="hero-description">
+          We transform ideas into stunning, high-performance web applications. 
+          Specializing in modern frontend development, seamless UX, and scalable solutions 
+          that drive real business results.
+        </p>
+        
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">
+            <span>View Our Work</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <span>Start a Project</span>
+          </a>
+        </div>
+        
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number" data-target="50">0</div>
+            <div class="stat-label">Projects Delivered</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="30">0</div>
+            <div class="stat-label">Happy Clients</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="99">0</div>
+            <div class="stat-label">Satisfaction Rate</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-visual">
+        <div class="floating-card card-1">
+          <i class="fas fa-code"></i>
+          <span>Clean Code</span>
+        </div>
+        <div class="floating-card card-2">
+          <i class="fas fa-bolt"></i>
+          <span>Fast Performance</span>
+        </div>
+        <div class="floating-card card-3">
+          <i class="fas fa-mobile-alt"></i>
+          <span>Responsive Design</span>
+        </div>
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Toast -->
-  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">About Siteforge</span>
+        <h2 class="section-title">Building the Future of Web</h2>
+        <p class="section-description">
+          We're a passionate team dedicated to creating exceptional digital experiences 
+          that blend aesthetic excellence with technical precision.
+        </p>
+      </div>
+      
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="card-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3>Our Mission</h3>
+          <p>To empower businesses with cutting-edge web solutions that drive growth, 
+             enhance user engagement, and deliver measurable results.</p>
+        </div>
+        
+        <div class="about-card">
+          <div class="card-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3>Innovation First</h3>
+          <p>We stay ahead of the curve, leveraging the latest technologies and design 
+             trends to create future-proof digital products.</p>
+        </div>
+        
+        <div class="about-card">
+          <div class="card-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Client-Centric</h3>
+          <p>Your success is our success. We work closely with clients to understand 
+             their vision and exceed expectations.</p>
+        </div>
+      </div>
+      
+      <div class="tech-stack">
+        <h3>Technologies We Master</h3>
+        <div class="tech-icons">
+          <div class="tech-item" title="HTML5">
+            <i class="fab fa-html5"></i>
+            <span>HTML5</span>
+          </div>
+          <div class="tech-item" title="CSS3">
+            <i class="fab fa-css3-alt"></i>
+            <span>CSS3</span>
+          </div>
+          <div class="tech-item" title="JavaScript">
+            <i class="fab fa-js"></i>
+            <span>JavaScript</span>
+          </div>
+          <div class="tech-item" title="React">
+            <i class="fab fa-react"></i>
+            <span>React</span>
+          </div>
+          <div class="tech-item" title="Node.js">
+            <i class="fab fa-node-js"></i>
+            <span>Node.js</span>
+          </div>
+          <div class="tech-item" title="GSAP">
+            <i class="fas fa-bolt"></i>
+            <span>GSAP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What We Do</span>
+        <h2 class="section-title">Our Services</h2>
+      </div>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-number">01</div>
+          <div class="service-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3>Web Development</h3>
+          <p>Custom websites and web applications built with modern frameworks, 
+             optimized for performance and scalability.</p>
+          <ul class="service-features">
+            <li>Responsive Design</li>
+            <li>Progressive Web Apps</li>
+            <li>E-commerce Solutions</li>
+          </ul>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-number">02</div>
+          <div class="service-icon">
+            <i class="fas fa-palette"></i>
+          </div>
+          <h3>UI/UX Design</h3>
+          <p>Beautiful, intuitive interfaces that prioritize user experience and 
+             drive engagement through thoughtful design.</p>
+          <ul class="service-features">
+            <li>User Research</li>
+            <li>Wireframing & Prototyping</li>
+            <li>Visual Design</li>
+          </ul>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-number">03</div>
+          <div class="service-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <h3>SEO & Performance</h3>
+          <p>Optimize your digital presence with technical SEO, performance tuning, 
+             and analytics implementation.</p>
+          <ul class="service-features">
+            <li>Technical SEO</li>
+            <li>Speed Optimization</li>
+            <li>Analytics Setup</li>
+          </ul>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-number">04</div>
+          <div class="service-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Digital Strategy</h3>
+          <p>Comprehensive digital strategies that align with your business goals 
+             and drive sustainable growth.</p>
+          <ul class="service-features">
+            <li>Consultation</li>
+            <li>Brand Development</li>
+            <li>Growth Planning</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Work</span>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-description">
+          A showcase of our recent work, demonstrating our commitment to quality and innovation.
+        </p>
+      </div>
+      
+      <div class="projects-grid">
+        <!-- Merava Global -->
+        <article class="project-card featured">
+          <div class="project-image">
+            <img src="assets/merava-global.jpg" alt="Merava Global - Global Trading Platform" loading="lazy">
+            <div class="project-overlay">
+              <a href="https://meravaglobal.com/#home" target="_blank" rel="noopener" class="project-link">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="tag">Featured</span>
+              <span class="tag">Web App</span>
+            </div>
+            <h3>Merava Global</h3>
+            <p>A comprehensive global trading platform featuring real-time market data, 
+               advanced analytics, and seamless user experience. Built with modern web 
+               technologies for optimal performance.</p>
+            <div class="project-tech">
+              <span>React</span>
+              <span>Node.js</span>
+              <span>WebSockets</span>
+              <span>Chart.js</span>
+            </div>
+            <div class="project-meta">
+              <div class="meta-item">
+                <i class="fas fa-calendar"></i>
+                <span>2024</span>
+              </div>
+              <div class="meta-item">
+                <i class="fas fa-tag"></i>
+                <span>Enterprise</span>
+              </div>
+            </div>
+          </div>
+        </article>
+        
+        <!-- Modern Portfolio -->
+        <article class="project-card">
+          <div class="project-image">
+            <img src="assets/portfolio.png" alt="Modern Portfolio - Animated Portfolio Website" loading="lazy">
+            <div class="project-overlay">
+              <a href="https://vetrans.github.io/Portfolio" target="_blank" rel="noopener" class="project-link">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="tag">Portfolio</span>
+            </div>
+            <h3>Modern Portfolio</h3>
+            <p>Stunning portfolio website with smooth animations, magnetic interactions, 
+               and Lenis scrolling for a premium user experience.</p>
+            <div class="project-tech">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>GSAP</span>
+              <span>Lenis</span>
+            </div>
+          </div>
+        </article>
+        
+        <!-- ChatApp UI -->
+        <article class="project-card">
+          <div class="project-image">
+            <img src="assets/chatapp.png" alt="ChatApp - Real-time Chat Interface" loading="lazy">
+            <div class="project-overlay">
+              <a href="https://vetrans.github.io/ChatApp-UI/" target="_blank" rel="noopener" class="project-link">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="tag">UI Design</span>
+            </div>
+            <h3>ChatApp UI</h3>
+            <p>Real-time chat interface with typing indicators, message bubbles, 
+               and polished micro-interactions for enhanced user engagement.</p>
+            <div class="project-tech">
+              <span>React</span>
+              <span>Socket.io</span>
+              <span>Node.js</span>
+            </div>
+          </div>
+        </article>
+        
+        <!-- E-Commerce UI -->
+        <article class="project-card">
+          <div class="project-image">
+            <img src="assets/ecommerce.png" alt="E-Commerce - Glass Morphism Shop" loading="lazy">
+            <div class="project-overlay">
+              <a href="https://vetrans.github.io/E-Commerce-UI/" target="_blank" rel="noopener" class="project-link">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+          <div class="project-content">
+            <div class="project-tags">
+              <span class="tag">E-commerce</span>
+            </div>
+            <h3>E-Commerce UI</h3>
+            <p>Premium e-commerce interface with glass morphism design, smooth transitions, 
+               and intuitive shopping experience.</p>
+            <div class="project-tech">
+              <span>HTML</span>
+              <span>Tailwind</span>
+              <span>GSAP</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Client Feedback</span>
+        <h2 class="section-title">What Founders Say</h2>
+        <p class="section-description">
+          Trusted by entrepreneurs and business leaders who value quality and innovation.
+        </p>
+      </div>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="quote-icon">
+            <i class="fas fa-quote-left"></i>
+          </div>
+          <p class="testimonial-text">
+            "Siteforge transformed our vision into reality. The Merava Global platform 
+            exceeded our expectations in every way - from design to functionality. 
+            Their attention to detail and technical expertise is unmatched."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="assets/avatar-1.jpg" alt="Founder" loading="lazy">
+            </div>
+            <div class="author-info">
+              <div class="author-name">Sarah Chen</div>
+              <div class="author-role">Founder, Merava Global</div>
+            </div>
+          </div>
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="quote-icon">
+            <i class="fas fa-quote-left"></i>
+          </div>
+          <p class="testimonial-text">
+            "Working with Siteforge was a game-changer for our startup. They delivered 
+            a high-performance web application that helped us scale rapidly. Professional, 
+            responsive, and incredibly talented team."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="assets/avatar-2.jpg" alt="Founder" loading="lazy">
+            </div>
+            <div class="author-info">
+              <div class="author-name">Marcus Rodriguez</div>
+              <div class="author-role">CEO, TechFlow Solutions</div>
+            </div>
+          </div>
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="quote-icon">
+            <i class="fas fa-quote-left"></i>
+          </div>
+          <p class="testimonial-text">
+            "The UI/UX work Siteforge delivered completely elevated our brand. 
+            Our conversion rates increased by 45% after the redesign. They truly 
+            understand how to create experiences that convert."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="assets/avatar-3.jpg" alt="Founder" loading="lazy">
+            </div>
+            <div class="author-info">
+              <div class="author-name">Aisha Patel</div>
+              <div class="author-role">Founder, DigitalCraft</div>
+            </div>
+          </div>
+          <div class="testimonial-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get in Touch</span>
+        <h2 class="section-title">Let's Build Something Amazing</h2>
+        <p class="section-description">
+          Ready to bring your project to life? We'd love to hear from you.
+        </p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h3>Email Us</h3>
+            <a href="mailto:hello@siteforge.com">hello@siteforge.com</a>
+          </div>
+          
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <h3>Location</h3>
+            <p>Available for remote collaboration worldwide</p>
+          </div>
+          
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3>Response Time</h3>
+            <p>Within 24 hours on business days</p>
+          </div>
+          
+          <div class="social-links">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+              <a href="https://github.com/Vetrans" target="_blank" rel="noopener" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://linkedin.com/company/siteforge" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://twitter.com/siteforge" target="_blank" rel="noopener" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://www.instagram.com/siteforge_/" target="_blank" rel="noopener" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="service">Service Interested In</label>
+            <select id="service" name="service">
+              <option value="">Select a service</option>
+              <option value="web-dev">Web Development</option>
+              <option value="ui-ux">UI/UX Design</option>
+              <option value="seo">SEO & Performance</option>
+              <option value="strategy">Digital Strategy</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Project Details</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-full">
+            <span>Send Message</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-text">Siteforge</span>
+            <span class="logo-dot">.</span>
+          </div>
+          <p>Crafting exceptional digital experiences with passion and precision.</p>
+        </div>
+        
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>Company</h4>
+            <a href="#about">About Us</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+          </div>
+          
+          <div class="footer-column">
+            <h4>Connect</h4>
+            <a href="#contact">Contact</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="mailto:hello@siteforge.com">Email</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2024</span> Siteforge. All rights reserved.</p>
+        <button id="backToTop" class="back-to-top" aria-label="Back to top">
+          <i class="fas fa-arrow-up"></i>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
-
-
 </html>
-
